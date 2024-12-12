@@ -8,14 +8,14 @@ from helpers import save_video_clip, most_repeated_clusters
 app = Flask(__name__)
 CORS(app)
 
-# Initialize project instance
 my_model = Model()
 
-# Configure video upload folder
 VIDEOS_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'videos')
 os.makedirs(VIDEOS_FOLDER, exist_ok=True)
 CLUSTER_CLIPS_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cluster_clips')
 os.makedirs(CLUSTER_CLIPS_FOLDER, exist_ok=True)
+FRAMES_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'frames')
+os.makedirs(FRAMES_FOLDER, exist_ok=True)
 
 @app.route('/videos/<cluster_id>')
 def serve_video(cluster_id):
@@ -64,18 +64,4 @@ def analyze_video():
     return jsonify(cluster_data)
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
-
-
-
-
-# @app.route('/video/<filename>')
-# def serve_video(filename):
-#     """
-#     Serve video files from the videos directory
-#     """
-#     try:
-#         return send_from_directory(VIDEOS_FOLDER, filename)
-#     except FileNotFoundError:
-#         return {"error": "Video not found"}, 404
+    app.run(host='0.0.0.0', port=5000, debug=True)

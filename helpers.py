@@ -1,7 +1,13 @@
 import os
-from moviepy.editor import VideoFileClip
 from typing import Dict
 from heapq import nlargest
+from moviepy.editor import VideoFileClip
+
+# TODO:
+# Fix moviepy save video clip # moviepy 1.0.3 (DONE)
+# Create yml file with conda
+# Dockerize
+# Share with marius
 
 def save_video_clip(video_path, start_time, end_time, output_folder, clip_name):
     try:                    
